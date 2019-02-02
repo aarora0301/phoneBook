@@ -1,0 +1,39 @@
+{
+  "name": "yellowpages-optimised",
+  "version": "1.0.0",
+  "description": "modularizing the phoneBook project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "phonebook"
+  ],
+  "author": "aarshi",
+  "license": "ISC",
+  "_moduleAliases": {
+    "@root": "server",
+    "@core": "server/core",
+    "@api": "server/api",
+    "@config": "server/config"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "express-session": "^1.15.6",
+    "http-status-codes": "^1.3.0",
+    "jsonwebtoken": "^8.4.0",
+    "lodash": "^4.17.11",
+    "module-alias": "^2.1.0",
+    "mongoose": "^5.4.9",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
