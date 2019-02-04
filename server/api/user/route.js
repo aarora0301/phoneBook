@@ -13,12 +13,25 @@ function post(req, res) {
     user = controller.save(req);
     user
       .then((user) => {
-        res.json({ user: controller.getAuthUser(user) });
+        res.json({ user: controller.sendAuthUser(user) });
       }).catch((err) => {
         res.status(statusCodes.INTERNAL_SERVER_ERROR).send(err);
       });
   }
 }
 
+function get(req,res){
+    controller.validateUserRequest(req, res);
+    user=controller.getUser(req,res);
+    // user
+    
+    // .then(()=>{
+    //   res.json({ user: controller.sendAuthUser(user) });
+    // }).catch((err)=>{
+    //   res.status(statusCodes.INTERNAL_SERVER_ERROR).send(err);
+    // });
+  
+}
 router.post('/', auth.optional, post);
+router.post('/login', auth.optional,get);
 module.exports = router;

@@ -16,6 +16,6 @@ const port = process.env.PORT || config.DEFAULT_PORT;
 app.use('/api', apiRoute);
 
 const server = app.listen(port, () => {
-  logger.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${port}`);
 });
 shutDownManager.manage(server);

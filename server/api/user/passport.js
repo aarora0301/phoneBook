@@ -8,7 +8,12 @@ passport.use(new Strategy({
   passwordField: 'user[password]',
 }, (email, password, done) => {
   Users.findOne({ email })
-    .then(user => done(null, user)).catch(done);
+    .then(user => {
+      if(!user || !user.validatePassword(password)){
+      return done(null, false, { errors: { 'email or password': 'is invalid' } });
+      }
+      return done(null ,user);
+    }).catch(done);
 }));
 
 passport.serializeUser((user, done) => {

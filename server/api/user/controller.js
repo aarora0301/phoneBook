@@ -1,6 +1,7 @@
 const isEmpty = require('lodash/isEmpty');
 const commonRepository = require('@api/common').repository;
 const apiConfig = require('@config').API;
+const passport=require('@api/user/passport')
 
 function get(id, limit) {
   const findOne = Boolean(id);
@@ -14,7 +15,6 @@ function createUser(request) {
   user.setPassword(request.body.user.password);
   return user;
 }
-
 
 function getByEmail(email) {
   return commonRepository.getOneOrAll('Users', { email }, null, null, true);
@@ -49,13 +49,31 @@ function validateUserRequest(request, res) {
   }
 }
 
-function getAuthUser(user) {
+function sendAuthUser(user) {
   return user.toAuthJSON();
 }
 
+function getUser(req, res){
+
+  return passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      throw err;
+    }
+
+    if (user) {
+      let _user = user;
+      _user.token = user.generateJWT();
+      return res.json({ user: _user.toAuthJSON() });
+    }
+    return res.status(400).json(info);
+  })(req, res);
+}
+
+
 module.exports = {
-  getAuthUser,
+  sendAuthUser,
   validateUserRequest,
   save,
+  getUser
 
 };
