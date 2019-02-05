@@ -31,7 +31,6 @@ function get(req, res) {
   if (!errors.isEmpty()) {
     res.status(400).json(errors.array());
   } else {
-    console.log(`read ${controller.getUser(req, res)}`);
     try {
       controller.getUser(req, res);
     } catch (err) {
