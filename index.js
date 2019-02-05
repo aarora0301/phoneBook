@@ -2,6 +2,7 @@
 require('module-alias/register');
 // end - initialize module aliases
 require('./server/api/user/model');
+require('./server/api/contactsList/model');
 
 const bootstrapper = require('@core/bootstrapper');
 const shutDownManager = require('@core/shutdownManager');
