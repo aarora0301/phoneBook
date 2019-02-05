@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
+const expressValidator = require('express-validator');
 const passport = require('passport');
 const session = require('express-session');
 const commonErrorHandler = require('./commonErrorHandler');
@@ -20,6 +21,7 @@ function initiate() {
   app.use(cors());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+  app.use(expressValidator());
   app.use(session({
     secret: 'passport', cookie: { maxAge: 6000 }, resave: false, saveUninitialized: false,
   }));
