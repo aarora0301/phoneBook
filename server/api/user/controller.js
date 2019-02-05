@@ -1,7 +1,7 @@
 const isEmpty = require('lodash/isEmpty');
 const commonRepository = require('@api/common').repository;
 const apiConfig = require('@config').API;
-const passport=require('@api/user/passport')
+const passport = require('@api/user/passport');
 
 function get(id, limit) {
   const findOne = Boolean(id);
@@ -24,28 +24,11 @@ async function save(request) {
   try {
     const existingUser = await getByEmail(request.body.user.email);
     const isUserPresent = !isEmpty(existingUser);
-    return isUserPresent ? 'User Already Exists' : commonRepository.save(null, null, null, createUser(request));
+    if (isUserPresent) return Promise.reject('User Already exists');
+
+    return commonRepository.save(null, null, null, (createUser(request)));
   } catch (err) {
     return Promise.reject(err);
-  }
-}
-
-function validateUserRequest(request, res) {
-  const response = {};
-  if (!request.body.user.email) {
-    return res.status(422).json({
-      errors: {
-        email: 'is required',
-      },
-    });
-  }
-
-  if (!request.body.user.password) {
-    return res.status(422).json({
-      errors: {
-        password: 'is required',
-      },
-    });
   }
 }
 
@@ -53,15 +36,14 @@ function sendAuthUser(user) {
   return user.toAuthJSON();
 }
 
-function getUser(req, res){
-
+function getUser(req, res) {
   return passport.authenticate('local', (err, user, info) => {
     if (err) {
       throw err;
     }
 
     if (user) {
-      let _user = user;
+      const _user = user;
       _user.token = user.generateJWT();
       return res.json({ user: _user.toAuthJSON() });
     }
@@ -72,8 +54,7 @@ function getUser(req, res){
 
 module.exports = {
   sendAuthUser,
-  validateUserRequest,
   save,
-  getUser
+  getUser,
 
 };
