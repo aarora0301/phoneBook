@@ -25,9 +25,8 @@ async function save(request) {
     const existingUser = await getByEmail(request.body.user.email);
     const isUserPresent = !isEmpty(existingUser);
 
-    //needs improvment, function should have consistent return type
-  if (isUserPresent) 
-    return Promise.reject('User Already exists'); 
+    // needs improvment, function should have consistent return type
+    if (isUserPresent) return Promise.reject('User Already exists');
     return commonRepository.save(null, null, null, (createUser(request)));
   } catch (err) {
     return Promise.reject(err);
@@ -38,7 +37,7 @@ function sendAuthUser(user) {
   return user.toAuthJSON();
 }
 
-function getUser(req, res) { 
+function getUser(req, res) {
   return passport.authenticate('local', (err, user, info) => {
     if (err) {
       throw err;
@@ -47,7 +46,7 @@ function getUser(req, res) {
     if (user) {
       const _user = user;
       _user.token = user.generateJWT();
-      return res.json({ user: _user.toAuthJSON() }); //needs improvement res to be set in route only
+      return res.json({ user: _user.toAuthJSON() }); // needs improvement res to be set in route only
     }
     return res.status(400).json(info);
   })(req, res);

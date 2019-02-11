@@ -4,7 +4,6 @@
  * to `mongoose`
  * @type {{controller: ({get}|*), route, model: *}}
  */
-
 module.exports = {
   controller: require('./controller'),
   route: require('./route'),

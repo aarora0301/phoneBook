@@ -5,7 +5,7 @@ function get(id, limit) {
   const findOne = Boolean(id);
   limit = !findOne ? limit || apiConfig.RESPONSE_COUNT_LIMIT : null;
   const query = findOne ? { _id: id } : {};
-  return commonRepository.getOneOrAll('Users', query, null, limit, findOne);
+  return commonRepository.getOneOrAll('ContactsList', query, null, limit, findOne);
 }
 
 function save(request) {
