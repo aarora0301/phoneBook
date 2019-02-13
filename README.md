@@ -14,7 +14,7 @@ Token Management: express-jwt/jsonwebtoken
 
 ### API Developed:
 1.http://localhost:8282/api/users/register : for registering new user
-payload: email, password. This API will register new user and return authToken
+payload: email, password. This API will register new user and return authToken<br/>
 2.http://localhost:8282/api/users/login : for user login.
 This will authenticate existing user and return authToken.
 3.http://localhost:8282/api/contactslist:
