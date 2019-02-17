@@ -5,12 +5,12 @@ PhoneBook Management system
 ## Technologies used
 
 Backend Frameworks: NodeJS, ExpressJS<br/>
-Database used: Mongo
-ORM: Mongoose
-Validation Framework: express-validator
-Session Management:express-session
-Authentication Framework: PassportJS(Local Strategy)
-Token Management: express-jwt/jsonwebtoken
+Database used: Mongo<br/>
+ORM: Mongoose<br/>
+Validation Framework: express-validator<br/>
+Session Management:express-session<br/>
+Authentication Framework: PassportJS(Local Strategy)<br/>
+Token Management: express-jwt/jsonwebtoken<br/>
 
 ### API Developed:
 1.http://localhost:8282/api/users/register : for registering new user
