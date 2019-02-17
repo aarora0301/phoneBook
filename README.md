@@ -4,7 +4,7 @@ PhoneBook Management system
 
 ## Technologies used
 
-Backend Frameworks: NodeJS, ExpressJS
+Backend Frameworks: NodeJS, ExpressJS<br/>
 Database used: Mongo
 ORM: Mongoose
 Validation Framework: express-validator
